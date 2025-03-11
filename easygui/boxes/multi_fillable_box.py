@@ -15,8 +15,14 @@ except:
 
 try:
     import tkinter as tk  # python 3
+    # modified by tyysoft 2025-3-11 18:11:08 begin
+    from tkinter import ttk
+    # modified by tyysoft 2025-3-11 18:11:08 end
 except:
     import Tkinter as tk  # python 2
+    # modified by tyysoft 2025-3-11 18:11:08 begin
+    from Tkinter import ttk
+    # modified by tyysoft 2025-3-11 18:11:08 end
 
 # -----------------------------------------------------------------------
 # multpasswordbox
@@ -356,10 +362,33 @@ class GUItk(object):
             entryFrame.pack(side=tk.TOP, fill=tk.BOTH)
 
             # --------- entryWidget -------------------------------------------
-            labelWidget = tk.Label(entryFrame, text=name)
-            labelWidget.pack(side=tk.LEFT)
+            # modified by tyysoft for enhance the enterbox,multienterbox,multipasswordbox for add combobox begin.
+            # desc: If the name is a dictionary, it is a combobox.
+            #       The first key is the label, the value is the list of values which will be added to combobox as items.
+            # example: {'Gender': ['Male', 'Femal', 'Other']}
+            # author: tyysoft(tuyanyi@163.com)
+            # date:  2025-3-11 16:49:04
+            if isinstance(name, dict):
+                first_key = next(iter(name))
+                labelWidget = tk.Label(entryFrame, text=first_key)
+                labelWidget.pack(side=tk.LEFT)
+                entryWidget = ttk.Combobox(entryFrame, width=38, textvariable=tk.StringVar())
+                entryWidget['values'] = name[first_key]
+                entryWidget.set(value)
+                entryWidget['state'] = 'readonly'
+            else:
+                labelWidget = tk.Label(entryFrame, text=name)
+                labelWidget.pack(side=tk.LEFT)
+                entryWidget = tk.Entry(entryFrame, width=40, highlightthickness=2)
+                # modified by tyysoft for enhance the multipasswordbox for give a confirm password input begin.
+                # desc: if the name end with '(*)', the entryWidget will show the contents as just asterisks.
+                # example: ['Password: (*)', "Confirm Password:(*)"]
+                if name[-3:] == '(*)':
+                    labelWidget.config(text=name[0: -3])
+                    entryWidget.configure(show="*")
+                # modified by tyysoft for enhance the multipasswordbox for give a confirm password input end.
+            # modified by tyysoft for enhance the enterbox,multienterbox,multipasswordbox for add combobox end.
 
-            entryWidget = tk.Entry(entryFrame, width=40, highlightthickness=2)
             self.entryWidgets.append(entryWidget)
             entryWidget.configure(
                 font=(global_state.PROPORTIONAL_FONT_FAMILY, global_state.TEXT_ENTRY_FONT_SIZE))
