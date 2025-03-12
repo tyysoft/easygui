@@ -6,7 +6,6 @@
 
 Version |release|
 """
-from easygui.boxes.utils import mouse_click_handlers
 
 try:
     from . import global_state
@@ -15,8 +14,10 @@ except:
 
 try:
     import tkinter as tk  # python 3
+    from tkinter import ttk
 except:
     import Tkinter as tk  # python 2
+    from Tkinter import ttk
 
 # -----------------------------------------------------------------------
 # multpasswordbox
@@ -356,10 +357,33 @@ class GUItk(object):
             entryFrame.pack(side=tk.TOP, fill=tk.BOTH)
 
             # --------- entryWidget -------------------------------------------
-            labelWidget = tk.Label(entryFrame, text=name)
-            labelWidget.pack(side=tk.LEFT)
+            # modified by tyysoft for enhance the enterbox,multienterbox,multipasswordbox for add combobox begin.
+            # desc: If the name is a dictionary, it is a combobox.
+            #       The first key is the label, the value is the list of values which will be added to combobox as items.
+            # example: {'Gender': ['Male', 'Femal', 'Other']}
+            # author: tyysoft(tuyanyi@163.com)
+            # date:  2025-3-11 16:49:04
+            if isinstance(name, dict):
+                first_key = next(iter(name))
+                labelWidget = tk.Label(entryFrame, text=first_key)
+                labelWidget.pack(side=tk.LEFT)
+                entryWidget = ttk.Combobox(entryFrame, width=38, textvariable=tk.StringVar())
+                entryWidget['values'] = name[first_key]
+                entryWidget.set(value)
+                entryWidget['state'] = 'readonly'
+            else:
+                labelWidget = tk.Label(entryFrame, text=name)
+                labelWidget.pack(side=tk.LEFT)
+                entryWidget = tk.Entry(entryFrame, width=40, highlightthickness=2)
+                # modified by tyysoft for enhance the multipasswordbox for give a confirm password input begin.
+                # desc: if the name end with '(*)', the entryWidget will show the contents as just asterisks.
+                # example: ['Password: (*)', "Confirm Password:(*)"]
+                if name[-3:] == '(*)':
+                    labelWidget.config(text=name[0: -3])
+                    entryWidget.configure(show="*")
+                # modified by tyysoft for enhance the multipasswordbox for give a confirm password input end.
+            # modified by tyysoft for enhance the enterbox,multienterbox,multipasswordbox for add combobox end.
 
-            entryWidget = tk.Entry(entryFrame, width=40, highlightthickness=2)
             self.entryWidgets.append(entryWidget)
             entryWidget.configure(
                 font=(global_state.PROPORTIONAL_FONT_FAMILY, global_state.TEXT_ENTRY_FONT_SIZE))
@@ -403,11 +427,6 @@ class GUItk(object):
         for selectionEvent in global_state.STANDARD_SELECTION_EVENTS:
             commandButton.bind("<%s>" % selectionEvent, handler)
 
-        mouse_handlers = mouse_click_handlers(self.ok_pressed)
-        for selectionEvent in global_state.STANDARD_SELECTION_EVENTS_MOUSE:
-            commandButton.bind("<%s>" % selectionEvent, mouse_handlers[selectionEvent])
-
-
     def create_cancel_button(self):
 
         cancelButton = tk.Button(self.buttonsFrame, takefocus=1, text="Cancel")
@@ -421,11 +440,6 @@ class GUItk(object):
         handler = self.cancel_pressed
         for selectionEvent in global_state.STANDARD_SELECTION_EVENTS:
             commandButton.bind("<%s>" % selectionEvent, handler)
-
-        mouse_handlers = mouse_click_handlers(self.cancel_pressed)
-        for selectionEvent in global_state.STANDARD_SELECTION_EVENTS_MOUSE:
-            commandButton.bind("<%s>" % selectionEvent, mouse_handlers[selectionEvent])
-
 
     def bindArrows(self, widget):
 
