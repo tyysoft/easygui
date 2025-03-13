@@ -42,6 +42,34 @@ For the most-recent production version:
 For our develop version which will be released next:
 <http://easygui.readthedocs.org/en/develop>.
 
+0.98.4
+========================================================================
+1, Support combobox for multenterbox, multpasswordbox.
+
+    ```py
+    import easygui as eg
+
+    def callback_func(mb):
+        print(f"用户输入了：{mb.values}")
+        mb.stop()
+
+    fields = ["姓名：", "年龄：", {"性别：":["男", "女"]}, {"文化程度：":["小学", "初中", "高中", "大学"]}]
+    values = ["小飞棍", "28", "男", "小学"]
+    eg.multenterbox(msg="Enter your name and age", title="多字段输入窗口(改进版)", fields=fields, values=values, callback=callback_func)
+    ```
+    
+    说明：在`fields`参数中，设置某成员为字典，键名为标签文字、键值为列表，保存下拉选项。
+2, Support multiple password input for sometimes need confirm password.
+
+    ```
+    import easygui as eg
+
+    ret = eg.multpasswordbox(msg="输入账号名和密码", title="注册信息",
+                         fields=["Name", "Password(*)", "Confirm password(*)"], values=["", "", ""])
+    ```
+
+    说明：只要`fields`参数中的成员使用“(*)”结尾，则认为该参数是密码
+
 0.98.3
 ========================================================================
 Update collections.abc import location (old location was deprecated since version 3.3, removed in version 3.10)
