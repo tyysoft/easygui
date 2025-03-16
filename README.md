@@ -42,6 +42,10 @@ For the most-recent production version:
 For our develop version which will be released next:
 <http://easygui.readthedocs.org/en/develop>.
 
+0.98.6
+========================================================================
+1. fixed the bug for click OK/Cancel buttun on enterbox, multenterbox, multpasswordbox that no reply.
+
 0.98.5
 ========================================================================
 1, support set font for all box, there are 2 types of font, one for text(msg, label, entry, listbox...), and one for button.

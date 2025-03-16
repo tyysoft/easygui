@@ -18,7 +18,7 @@ try:
 except:
     import Tkinter as tk  # python 2
     from Tkinter import ttk
-
+from easygui.boxes.utils import mouse_click_handlers
 # -----------------------------------------------------------------------
 # multpasswordbox
 # -----------------------------------------------------------------------
@@ -455,13 +455,15 @@ class GUItk(object):
         self.bindArrows(okButton)
         okButton.pack(expand=1, side=tk.LEFT, padx='3m', pady='3m',
                       ipadx='2m', ipady='1m')
-
         # for the commandButton, bind activation events to the activation event
         # handler
-        commandButton = okButton
-        handler = self.ok_pressed
-        for selectionEvent in global_state.STANDARD_SELECTION_EVENTS:
-            commandButton.bind("<%s>" % selectionEvent, handler)
+        # commandButton = okButton
+        # handler = self.ok_pressed
+        # for selectionEvent in global_state.STANDARD_SELECTION_EVENTS:
+        #     commandButton.bind("<%s>" % selectionEvent, handler)
+        mouse_handlers = mouse_click_handlers(self.ok_pressed)
+        for selectionEvent in global_state.STANDARD_SELECTION_EVENTS_MOUSE:
+            okButton.bind("<%s>" % selectionEvent, mouse_handlers[selectionEvent])
 
     def create_cancel_button(self):
 
@@ -478,10 +480,13 @@ class GUItk(object):
 
         # for the commandButton, bind activation events to the activation event
         # handler
-        commandButton = cancelButton
-        handler = self.cancel_pressed
-        for selectionEvent in global_state.STANDARD_SELECTION_EVENTS:
-            commandButton.bind("<%s>" % selectionEvent, handler)
+        # commandButton = cancelButton
+        # handler = self.cancel_pressed
+        # for selectionEvent in global_state.STANDARD_SELECTION_EVENTS:
+        #     commandButton.bind("<%s>" % selectionEvent, handler)
+        mouse_handlers = mouse_click_handlers(self.cancel_pressed)
+        for selectionEvent in global_state.STANDARD_SELECTION_EVENTS_MOUSE:
+            cancelButton.bind("<%s>" % selectionEvent, mouse_handlers[selectionEvent])
 
     def bindArrows(self, widget):
 
