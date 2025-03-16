@@ -338,7 +338,13 @@ class GUItk(object):
 
     def create_msg_widget(self, msg):
         # -------------------- the msg widget ----------------------------
-        self.messageWidget = tk.Message(self.boxRoot, width="4.5i", text=msg)
+        self.messageWidget = tk.Message(self.boxRoot, width="4.5i", text=msg, 
+                                        font=(global_state.EgFont.text_font_name, 
+                                            global_state.EgFont.text_font_size, 
+                                            global_state.EgFont.text_font_style,
+                                            global_state.EgFont.text_font_slant
+                                            )
+                                        )
         self.messageWidget.configure(
             font=(global_state.PROPORTIONAL_FONT_FAMILY, global_state.PROPORTIONAL_FONT_SIZE))
         self.messageWidget.pack(
@@ -365,16 +371,40 @@ class GUItk(object):
             # date:  2025-3-11 16:49:04
             if isinstance(name, dict):
                 first_key = next(iter(name))
-                labelWidget = tk.Label(entryFrame, text=first_key)
+                labelWidget = tk.Label(entryFrame, text=first_key,
+                                       font=(global_state.EgFont.text_font_name, 
+                                            global_state.EgFont.text_font_size, 
+                                            global_state.EgFont.text_font_style,
+                                            global_state.EgFont.text_font_slant
+                                            )
+                                       )
                 labelWidget.pack(side=tk.LEFT)
-                entryWidget = ttk.Combobox(entryFrame, width=38, textvariable=tk.StringVar())
+                entryWidget = ttk.Combobox(entryFrame, width=38, textvariable=tk.StringVar(),
+                                           font=(global_state.EgFont.text_font_name, 
+                                                global_state.EgFont.text_font_size, 
+                                                global_state.EgFont.text_font_style,
+                                                global_state.EgFont.text_font_slant
+                                                )
+                                           )
                 entryWidget['values'] = name[first_key]
                 entryWidget.set(value)
                 entryWidget['state'] = 'readonly'
             else:
-                labelWidget = tk.Label(entryFrame, text=name)
+                labelWidget = tk.Label(entryFrame, text=name, 
+                                        font=(global_state.EgFont.text_font_name, 
+                                            global_state.EgFont.text_font_size, 
+                                            global_state.EgFont.text_font_style,
+                                            global_state.EgFont.text_font_slant
+                                            )
+                                       )
                 labelWidget.pack(side=tk.LEFT)
-                entryWidget = tk.Entry(entryFrame, width=40, highlightthickness=2)
+                entryWidget = tk.Entry(entryFrame, width=40, highlightthickness=2,
+                                       font=(global_state.EgFont.text_font_name, 
+                                            global_state.EgFont.text_font_size, 
+                                            global_state.EgFont.text_font_style,
+                                            global_state.EgFont.text_font_slant
+                                            )
+                                       )
                 # modified by tyysoft for enhance the multipasswordbox for give a confirm password input begin.
                 # desc: if the name end with '(*)', the entryWidget will show the contents as just asterisks.
                 # example: ['Password: (*)', "Confirm Password:(*)"]
@@ -415,7 +445,13 @@ class GUItk(object):
 
     def create_ok_button(self):
 
-        okButton = tk.Button(self.buttonsFrame, takefocus=1, text="OK")
+        okButton = tk.Button(self.buttonsFrame, takefocus=1, text="OK",
+                             font=(global_state.EgFont.button_font_name, 
+                                   global_state.EgFont.button_font_size, 
+                                   global_state.EgFont.button_font_style,
+                                   global_state.EgFont.button_font_slant
+                                )
+                             )
         self.bindArrows(okButton)
         okButton.pack(expand=1, side=tk.LEFT, padx='3m', pady='3m',
                       ipadx='2m', ipady='1m')
@@ -429,7 +465,13 @@ class GUItk(object):
 
     def create_cancel_button(self):
 
-        cancelButton = tk.Button(self.buttonsFrame, takefocus=1, text="Cancel")
+        cancelButton = tk.Button(self.buttonsFrame, takefocus=1, text="Cancel",
+                                 font=(global_state.EgFont.button_font_name, 
+                                       global_state.EgFont.button_font_size, 
+                                       global_state.EgFont.button_font_style,
+                                       global_state.EgFont.button_font_slant
+                                    )
+                                 )
         self.bindArrows(cancelButton)
         cancelButton.pack(expand=1, side=tk.LEFT, padx='3m', pady='3m',
                           ipadx='2m', ipady='1m')

@@ -27,3 +27,13 @@ prop_font_line_length = 62
 fixw_font_line_length = 80
 num_lines_displayed = 50
 default_hpad_in_chars = 2
+
+class EgFont:
+    text_font_name = "Courier New"
+    text_font_size = 10
+    text_font_style = "normal"
+    text_font_slant = "normal"
+    button_font_name = "Courier New"
+    button_font_size = 10
+    button_font_style = "normal"
+    button_font_slant = "normal"

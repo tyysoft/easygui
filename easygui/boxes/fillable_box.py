@@ -70,7 +70,13 @@ def __fillablebox(msg, title="", default="", mask=None, image=None, root=None):
     if tk_Image:
         imageFrame = tk.Frame(master=boxRoot)
         imageFrame.pack(side=tk.TOP, fill=tk.BOTH)
-        label = tk.Label(imageFrame, image=tk_Image)
+        label = tk.Label(imageFrame, image=tk_Image,
+                         font=(global_state.EgFont.text_font_name, 
+                            global_state.EgFont.text_font_size, 
+                            global_state.EgFont.text_font_style,
+                            global_state.EgFont.text_font_slant
+                            )
+                         )
         label.image = tk_Image  # keep a reference!
         label.pack(side=tk.TOP, expand=tk.YES, fill=tk.X, padx='1m', pady='1m')
 
@@ -87,14 +93,26 @@ def __fillablebox(msg, title="", default="", mask=None, image=None, root=None):
     buttonsFrame.pack(side=tk.TOP, fill=tk.BOTH)
 
     # -------------------- the msg widget ----------------------------
-    messageWidget = tk.Message(messageFrame, width="4.5i", text=msg)
+    messageWidget = tk.Message(messageFrame, width="4.5i", text=msg,
+                               font=(global_state.EgFont.text_font_name, 
+                                    global_state.EgFont.text_font_size, 
+                                    global_state.EgFont.text_font_style,
+                                    global_state.EgFont.text_font_slant
+                                    )
+                               )
     messageWidget.configure(
         font=(global_state.PROPORTIONAL_FONT_FAMILY, global_state.PROPORTIONAL_FONT_SIZE))
     messageWidget.pack(
         side=tk.RIGHT, expand=1, fill=tk.BOTH, padx='3m', pady='3m')
 
     # --------- entryWidget ----------------------------------------------
-    entryWidget = tk.Entry(entryFrame, width=40)
+    entryWidget = tk.Entry(entryFrame, width=40,
+                           font=(global_state.EgFont.text_font_name, 
+                                global_state.EgFont.text_font_size, 
+                                global_state.EgFont.text_font_style,
+                                global_state.EgFont.text_font_slant
+                                )
+                           )
     bindArrows(entryWidget)
     entryWidget.configure(
         font=(global_state.PROPORTIONAL_FONT_FAMILY, global_state.TEXT_ENTRY_FONT_SIZE))
@@ -107,7 +125,13 @@ def __fillablebox(msg, title="", default="", mask=None, image=None, root=None):
     entryWidget.insert(0, __enterboxDefaultText)
 
     # ------------------ ok button -------------------------------
-    okButton = tk.Button(buttonsFrame, takefocus=1, text="OK")
+    okButton = tk.Button(buttonsFrame, takefocus=1, text="OK", 
+                         font=(global_state.EgFont.button_font_name, 
+                               global_state.EgFont.button_font_size, 
+                               global_state.EgFont.button_font_style,
+                               global_state.EgFont.button_font_slant
+                            )
+                         )
     bindArrows(okButton)
     okButton.pack(
         expand=1, side=tk.LEFT, padx='3m', pady='3m', ipadx='2m', ipady='1m')
@@ -124,7 +148,13 @@ def __fillablebox(msg, title="", default="", mask=None, image=None, root=None):
         okButton.bind("<%s>" % selectionEvent, mouse_handlers[selectionEvent])
 
     # ------------------ cancel button -------------------------------
-    cancelButton = tk.Button(buttonsFrame, takefocus=1, text="Cancel")
+    cancelButton = tk.Button(buttonsFrame, takefocus=1, text="Cancel",
+                                font=(global_state.EgFont.button_font_name, 
+                                      global_state.EgFont.button_font_size, 
+                                      global_state.EgFont.button_font_style,
+                                      global_state.EgFont.button_font_slant
+                                )
+                             )
     bindArrows(cancelButton)
     cancelButton.pack(
         expand=1, side=tk.RIGHT, padx='3m', pady='3m', ipadx='2m', ipady='1m')

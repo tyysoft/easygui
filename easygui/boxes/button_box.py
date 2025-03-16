@@ -414,6 +414,11 @@ class GUItk(object):
             pady=global_state.default_hpad_in_chars *
             self.calc_character_width(),
             wrap=tk.WORD,
+            font=(global_state.EgFont.text_font_name, 
+                  global_state.EgFont.text_font_size, 
+                  global_state.EgFont.text_font_style,
+                  global_state.EgFont.text_font_slant
+                  )
         )
         self.set_msg(msg)
         self.messageArea.grid(row=0)
@@ -458,7 +463,13 @@ class GUItk(object):
                 this_image['widget'] = tk.Button(
                     self.imagesFrame,
                     takefocus=1,
-                    compound=tk.TOP)
+                    compound=tk.TOP,
+                    font=(global_state.EgFont.button_font_name, 
+                          global_state.EgFont.button_font_size, 
+                          global_state.EgFont.button_font_style,
+                          global_state.EgFont.button_font_slant
+                        )
+                  )
                 if this_image['widget'] is not None:
                     this_image['widget'].configure(image=this_image['tk_image'])
                 fn = lambda text=filename, row=_r, column=column_number: self.button_pressed(text, (row, column))
@@ -487,7 +498,13 @@ class GUItk(object):
                     self.buttonsFrame,
                     takefocus=1,
                     text=this_button['clean_text'],
-                    underline=hotkey_position)
+                    underline=hotkey_position,
+                    font=(global_state.EgFont.button_font_name, 
+                          global_state.EgFont.button_font_size, 
+                          global_state.EgFont.button_font_style,
+                          global_state.EgFont.button_font_slant
+                        )
+                    )
             fn = lambda text=button_text, row=row, column=0: self.button_pressed(text, (row, column))
             this_button['widget'].configure(command=fn)
             this_button['widget'].grid(row=0, column=i_hack, padx='1m', pady='1m', ipadx='2m', ipady='1m')

@@ -42,6 +42,16 @@ For the most-recent production version:
 For our develop version which will be released next:
 <http://easygui.readthedocs.org/en/develop>.
 
+0.98.5
+========================================================================
+1, support set font for all box, there are 2 types of font, one for text(msg, label, entry, listbox...), and one for button.
+before use any box, set font first, if not, it will be display as the default font.
+Usage:
+    import easygui as eg
+    eg.EgFont.text_font_name = "微软雅黑"
+    eg.EgFont.text_font_size = 12
+    eg.msgbox("Hello World! 你好！", "Title")
+
 0.98.4
 ========================================================================
 1, Support combobox for multenterbox, multpasswordbox.

@@ -467,7 +467,11 @@ class GUItk(object):
             self.calc_character_width(),
             pady=self.calc_character_width(),
             wrap=tk.WORD,
-
+            font=(global_state.EgFont.text_font_name, 
+                  global_state.EgFont.text_font_size, 
+                  global_state.EgFont.text_font_style,
+                  global_state.EgFont.text_font_slant
+                  )
         )
         self.set_msg(msg)
 
@@ -497,6 +501,11 @@ class GUItk(object):
             self.calc_character_width(),
             height=25,  # lines. Note: a user-set arg would be preferable to hardcoded value
             width=self.width_in_chars,   # chars of the current font
+            font=(global_state.EgFont.text_font_name, 
+                  global_state.EgFont.text_font_size, 
+                  global_state.EgFont.text_font_style,
+                  global_state.EgFont.text_font_slant
+                  )
         )
 
         if wrap_text:
@@ -551,7 +560,13 @@ class GUItk(object):
         # put the buttons in the buttonsFrame
         self.cancelButton = tk.Button(
             self.buttonsFrame, takefocus=tk.YES, text="Cancel",
-            height=1, width=6)
+            height=1, width=6,
+            font=(global_state.EgFont.button_font_name, 
+                  global_state.EgFont.button_font_size, 
+                  global_state.EgFont.button_font_style,
+                  global_state.EgFont.button_font_slant
+                  )
+            )
         self.cancelButton.pack(
             expand=tk.NO, side=tk.LEFT, padx='2m', pady='1m', ipady="1m",
             ipadx="2m")
@@ -566,7 +581,13 @@ class GUItk(object):
     def create_ok_button(self):
         # put the buttons in the buttonsFrame
         self.okButton = tk.Button(
-            self.buttonsFrame, takefocus=tk.YES, text="OK", height=1, width=6)
+            self.buttonsFrame, takefocus=tk.YES, text="OK", height=1, width=6,
+            font=(global_state.EgFont.button_font_name, 
+                  global_state.EgFont.button_font_size, 
+                  global_state.EgFont.button_font_style,
+                  global_state.EgFont.button_font_slant
+                  )
+            )
         self.okButton.pack(
             expand=tk.NO, side=tk.LEFT, padx='2m', pady='1m', ipady="1m",
             ipadx="2m")

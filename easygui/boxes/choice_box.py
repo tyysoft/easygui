@@ -358,7 +358,11 @@ class GUItk(object):
             pady=(global_state.default_hpad_in_chars *
                   self.calc_character_width()),
             wrap=tk.WORD,
-
+            font=(global_state.EgFont.text_font_name, 
+                global_state.EgFont.text_font_size, 
+                global_state.EgFont.text_font_style,
+                global_state.EgFont.text_font_slant
+                )
         )
         self.set_msg(msg)
 
@@ -377,7 +381,12 @@ class GUItk(object):
         self.choiceboxWidget = tk.Listbox(self.choiceboxFrame,
                                           height=lines_to_show,
                                           borderwidth="1m", relief="flat",
-                                          bg="white"
+                                          bg="white",
+                                          font=(global_state.EgFont.text_font_name, 
+                                                global_state.EgFont.text_font_size, 
+                                                global_state.EgFont.text_font_style,
+                                                global_state.EgFont.text_font_slant
+                                                )
                                           )
 
         if self.multiple_select:
@@ -425,7 +434,13 @@ class GUItk(object):
 
         # put the buttons in the self.buttonsFrame
         okButton = tk.Button(self.buttonsFrame, takefocus=tk.YES,
-                             text="OK", height=1, width=6)
+                             text="OK", height=1, width=6,
+                             font=(global_state.EgFont.button_font_name, 
+                                   global_state.EgFont.button_font_size, 
+                                   global_state.EgFont.button_font_style,
+                                   global_state.EgFont.button_font_slant
+                                )
+                            )
         bindArrows(okButton)
         okButton.pack(expand=tk.NO, side=tk.RIGHT, padx='2m', pady='1m',
                       ipady="1m", ipadx="2m")
@@ -440,7 +455,13 @@ class GUItk(object):
 
     def create_cancel_button(self):
         cancelButton = tk.Button(self.buttonsFrame, takefocus=tk.YES,
-                                 text="Cancel", height=1, width=6)
+                                 text="Cancel", height=1, width=6,
+                                 font=(global_state.EgFont.button_font_name, 
+                                       global_state.EgFont.button_font_size, 
+                                       global_state.EgFont.button_font_style,
+                                       global_state.EgFont.button_font_slant
+                                    )
+                                 )
         bindArrows(cancelButton)
         cancelButton.pack(expand=tk.NO, side=tk.LEFT, padx='2m', pady='1m',
                           ipady="1m", ipadx="2m")
@@ -456,13 +477,25 @@ class GUItk(object):
             return
 
         selectAllButton = tk.Button(
-            self.buttonsFrame, text="Select All", height=1, width=6)
+                                    self.buttonsFrame, text="Select All", height=1, width=8,
+                                    font=(global_state.EgFont.button_font_name, 
+                                          global_state.EgFont.button_font_size, 
+                                          global_state.EgFont.button_font_style,
+                                          global_state.EgFont.button_font_slant
+                                        )
+                                    )
         selectAllButton.pack(expand=tk.NO, side=tk.LEFT, padx='2m',
                              pady='1m',
                              ipady="1m", ipadx="2m")
 
         clearAllButton = tk.Button(self.buttonsFrame, text="Clear All",
-                                   height=1, width=6)
+                                   height=1, width=8,
+                                   font=(global_state.EgFont.button_font_name, 
+                                         global_state.EgFont.button_font_size, 
+                                         global_state.EgFont.button_font_style,
+                                         global_state.EgFont.button_font_slant
+                                        )
+                                   )
         clearAllButton.pack(expand=tk.NO, side=tk.LEFT,
                             padx='2m', pady='1m',
                             ipady="1m", ipadx="2m")

@@ -28,6 +28,7 @@ __all__ = ['buttonbox',
            'egversion',
            'abouteasygui',
            'egdemo',
+           'EgFont',
 ]
 
 # Import all functions that form the API
@@ -37,6 +38,7 @@ from .boxes.fileopen_box import fileopenbox
 from .boxes.filesave_box import filesavebox
 
 from .boxes.text_box import textbox
+from .boxes.global_state import EgFont
 
 from .boxes.derived_boxes import ynbox
 from .boxes.derived_boxes import ccbox
